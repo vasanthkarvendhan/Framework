@@ -1,0 +1,29 @@
+package mavenpro.E2Eproject;
+
+import java.io.IOException;
+
+import org.testng.annotations.Test;
+
+import pageobject.Landingpage;
+import pageobject.Loginpage;
+import resources.Baseclass;
+
+public class Homepage extends Baseclass{
+	
+	@Test
+	public void firstpage() throws IOException
+
+	{
+		driver=startingdriver();
+		driver.get("http://www.qaclickacademy.com/");
+		
+		Landingpage lp=new Landingpage(driver);
+		lp.signin().click();
+		Loginpage ll=new Loginpage(driver);
+		ll.email().sendKeys("vasanthkarvendhan@gmail.com");
+		ll.password().sendKeys("karvendhan@1");
+		ll.login().click();
+		//ll.check().click();
+		
+	}
+}
