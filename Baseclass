@@ -1,0 +1,33 @@
+package resources;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Properties;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Baseclass {
+
+public WebDriver driver;
+public WebDriver startingdriver() throws IOException 
+{
+	
+	
+	Properties prop=new Properties();
+	FileInputStream fis=new FileInputStream("C:\\Users\\User\\eclipse-workspace\\selenium\\E2Eproject\\src\\main\\java\\resources\\data.properties");
+   prop.load(fis);
+  String browsername= prop.getProperty("browser");
+  if(browsername.equals("Chrome"))
+  {
+	  System.setProperty("webdriver.chrome.driver","C:\\Users\\User\\eclipse-workspace\\SELENIUM11\\src\\drivers\\chromedriver.exe");
+	     driver=new ChromeDriver();
+	     
+  }
+  driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+  return driver;
+   
+
+}
+}
